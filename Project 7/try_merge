@@ -1,0 +1,47 @@
+# Author: Jing Wang, for Program Design
+# try_merge is a Unix shell script that will be used to test project 7.
+# To use the script, copy it into the same directory as your scource file
+# Set execute permission for the file by issuing the command:
+# chmod +x try_merge
+# Compile your program, producing a.out as the executable
+# To run the script, type 
+# ./try_merge
+# The user input from the script will not be shown on the screen.
+# Compare the results from your program with the expected results on the test cases.
+echo '===================================================='
+#
+./a.out <<-EndOfInput
+tpsce
+o ert
+EndOfInput
+echo '----------------------------------------------------'
+echo 'Expected:'
+echo 'Enter first word: tpsce'
+echo 'Enter second word: o ert'
+echo 'Output: top secret'
+#
+echo '===================================================='
+#
+./a.out <<-EndOfInput
+fe
+le now
+EndOfInput
+echo '----------------------------------------------------'
+echo 'Expected:'
+echo 'Enter first word: fe'
+echo 'Enter second word: le now'
+echo 'Output: flee now'
+#
+echo '===================================================='
+#
+./a.out <<-EndOfInput
+assiaetekn oiht
+sasnt h igtng
+EndOfInput
+echo '----------------------------------------------------'
+echo 'Expected:'
+echo 'Enter first word: assiaetekn oiht'
+echo 'Enter second word: sasnt h igtng'
+echo 'Output: assassinate the king tonight'
+echo '===================================================='
+#

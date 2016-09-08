@@ -1,0 +1,81 @@
+# Author: Jing Wang, for Program Design
+# try_roster is a Unix shell script that will be used to test project 10.
+# To use the script, copy it into the same directory as your scource file
+# Set execute permission for the file by issuing the command:
+# chmod +x try_roster
+# Compile your program, producing a.out as the executable
+# To run the script, type
+# ./try_roster
+# The user input from the script will not be shown on the screen.
+# Compare the results from your program with the expected results on the test cases.
+
+echo '===================================================='
+#
+./a.out <<-EndOfInput
+a
+3
+Winston
+Jameis
+a
+13
+Evans
+Mike
+a
+22
+Martin
+Doug
+a
+3
+a
+8
+Glennon
+Mike
+f
+13
+f
+5
+p
+q
+EndOfInput
+
+echo '----------------------------------------------------'
+echo 'Expected:'
+echo 'opertion code: a'
+echo 'Enter player number: 3'
+echo 'Enter player last name: Winston'
+echo 'Enter player first name: Jameis'
+
+echo 'Enter operation code: a'
+echo 'Enter player number: 13'
+echo 'Enter player last name: Evans'
+echo 'Enter player first name: Mike'
+
+echo 'Enter operation code: a'
+echo 'Enter player number: 22'
+echo 'Enter player last name: Martin'
+echo 'Enter player first name: Doug'
+
+echo 'opertion code: a'
+echo 'Enter player number: 3'
+echo 'Player already existed.'
+
+echo 'Enter operation code: a'
+echo 'Enter player number: 8'
+echo 'Enter player last name: Glennon'
+echo 'Enter player first name: Mike'
+echo 'Enter operation code: f'
+echo 'Enter player number: 13'
+echo 'Player name: Evans, Mike'
+
+echo 'Enter operation code: f'
+echo 'Enter player number: 5'
+echo 'Player not found.'
+
+echo 'Enter operation code: p'
+echo 'Player Number   Last Name       First Name'
+echo '3               Winston         Jameis'
+echo '13              Evans           Mike'
+echo '22              Martin          Doug'
+echo '8               Glennon         Mike'
+
+echo 'Enter operation code: q'

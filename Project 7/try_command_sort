@@ -1,0 +1,36 @@
+# Author: Jing Wang, for Program Design
+# try_command_sort is a Unix shell script that will be used to test project 7.
+# To use the script, copy it into the same directory as your scource file
+# Set execute permission for the file by issuing the command:
+# chmod +x try_command_sort
+# Compile your program, producing a.out as the executable
+# To run the script, type 
+# ./try_command_sort
+# The user input from the script will not be shown on the screen.
+# Compare the results from your program with the expected results on the test cases.
+echo '===================================================='
+#
+./sort -a 10 9 23 24 559 20 84 12 48 98
+#
+echo '----------------------------------------------------'
+echo 'Expected:'
+echo 'In ascending order: 9 10 12 20 23 24 48 84 98 559'
+#
+echo '===================================================='
+#
+./sort -d 8 12 42 10 89 4 1 39 102 3
+#
+echo '----------------------------------------------------'
+echo 'Expected:'
+echo 'In descending order: 102 89 42 39 12 10 8 4 3 1'
+#
+echo '===================================================='
+#
+./sort -h 8 12 42 10 89 4 1 39 102 3
+#
+echo '----------------------------------------------------'
+echo 'Expected:'
+echo 'Invalid option for sorting'
+#
+echo '===================================================='
+#
