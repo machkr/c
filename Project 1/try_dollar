@@ -1,0 +1,76 @@
+# Written by Jing Wang for Program Design
+# try_dollar is a Unix shell script that will be used to test project 1.
+# To use the script, copy it into the same directory as your scource file
+# Set execute permission for the file by issuing the command:
+# chmod +x try_dollar
+# Compile your program, producing a.out as the executable
+# To run the script, type 
+# ./try_dollar
+# The user input from the script will not be shown on the screen.
+# Compare the results from your program with the expected results on the test cases.
+echo '===================================================='
+./a.out <<-EndOfInput
+0
+EndOfInput
+echo '----------------------------------------------------'
+echo 'Expected:'
+echo 'Enter a dollar amount: 0'
+echo '$20 bills: 0'
+echo '$10 bills: 0'
+echo '$5 bills : 0'
+echo '$1 bills: 0'
+echo '===================================================='
+./a.out <<-EndOfInput
+93
+EndOfInput
+echo '----------------------------------------------------'
+echo 'Expected:'
+echo 'Enter a dollar amount: 93' 
+echo '$20 bills: 4'
+echo '$10 bills: 1'
+echo '$5 bills : 0'
+echo '$1 bills: 3'
+echo '===================================================='
+./a.out <<-EndOfInput
+597
+EndOfInput
+echo '----------------------------------------------------'
+echo 'Expected:'
+echo 'Enter a dollar amount: 597'
+echo '$20 bills: 29'
+echo '$10 bills: 1'
+echo '$5 bills : 1'
+echo '$1 bills: 2' 
+echo '===================================================='
+./a.out <<-EndOfInput
+1000000000
+EndOfInput
+echo '----------------------------------------------------'
+echo 'Expected:'
+echo 'Enter a dollar amount: 1000000000'
+echo '$20 bills: 50000000'
+echo '$10 bills: 0'
+echo '$5 bills : 0'
+echo '$1 bills: 0' 
+echo '===================================================='
+./a.out <<-EndOfInput
+1000000001
+EndOfInput
+echo '----------------------------------------------------'
+echo 'Expected:'
+echo 'Enter a dollar amount: '
+echo 'Invalid amount 1000000001'
+echo 'Amount must be between 0 and 1000000000, inclusive'
+echo '===================================================='
+./a.out <<-EndOfInput
+-1
+EndOfInput
+echo '----------------------------------------------------'
+echo 'Expected:'
+echo 'Enter a dollar amount: '
+echo 'Invalid amount -1'
+echo 'Amount must be between 0 and 1000000000, inclusive'
+echo '----------------------------------------------------'
+
+
+

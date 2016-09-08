@@ -1,0 +1,221 @@
+// Programmer: Matthew Kramer
+//
+// Program: Project 4 - sets_of_numbers.c
+//
+// Description: Provides a number of different
+//				functions for working with arrays.
+//
+// Course: Program Design - COP 3514, Section 003
+
+//Note: comments are located to the right of the program
+
+#include <stdio.h>																//Initializes standard input/output method
+
+#define MAX_SET_SIZE 50															//Macro definitions of various constants used within the program and its functions
+#define TRUE 1
+#define FALSE 0
+
+void read_set(int a[]);
+void print_set(int a[]);
+void enter_set(int v, int a[]);
+int element_of(int v, int a[]);
+void union_set(int a[], int b[], int c[]);
+void intersect_set(int a[], int b[], int c[]);
+void delete_set(int v, int a[]);
+void set_difference(int a[], int b[], int c[]);
+void sym_difference(int a[], int b[], int c[]);
+
+int main()								 										//Reads in two sets and calcuates the result of various operations
+{
+	int a[MAX_SET_SIZE+1];
+   	int b[MAX_SET_SIZE+1];	
+   	int c[MAX_SET_SIZE+1];
+
+	read_set(a);
+   	read_set(b);
+
+   	printf("Set A:  ");
+   	print_set(a);
+
+   	printf("Set B:  ");
+   	print_set(b);
+
+   	union_set(a, b, c);
+   	printf("The union of sets A and B is: ");
+   	print_set(c);
+
+   	intersect_set(a, b, c);
+   	printf("The intersection of sets A and B is: ");
+   	print_set(c);
+
+	delete_set(5, a);
+   	printf("Set A, with 5 deleted: ");
+   	print_set(a);
+
+   	set_difference(a, b, c);
+   	printf("The set difference of sets A and B is: ");
+   	print_set(c);
+
+   	sym_difference(a, b, c);
+   	printf("The symmetric difference of sets A and B is: ");
+   	print_set(c);
+
+   	return 0;
+}
+
+
+void read_set(int a[])											//"read_set" reads integers from standard input and uses "enter_set" to add them to the set, avoiding repeated entries
+{
+   	a[0] = 0; 													//"a[0]" is a special element - it indicates the number of elements in set 'a'
+
+	int value;													//Declares temporary integer 'value' for use when entering array elements
+
+   	printf("Please enter the set values, ending with -1.\n");	//Asks for and reads in an array element
+   	scanf("%d", &value);
+
+	while(value != -1)											//While the current element does not equal -1
+	{
+	    enter_set(value, a);									//Enter it into the array
+    	scanf("%d", &value);									//And scan for the next value
+    }
+}
+
+
+void print_set(int a[0])										//"print_set" prints out the content of the set in the traditional mathemetical notation
+{
+   	int i;														//Declaration of integer 'i' for use in the for loop
+
+	printf("{");        										//The opening brace for the set
+
+	if(a[0] <= 0)												//If the number of elements in the array is less than or equal to 0
+	{
+	    printf("There are no elements in the set. \n");			//Print that the array is empty
+   	}
+	else 														//Otherwise,
+	{
+        printf("%d", a[1]);										//Print first element in the set (not the length, a[0])
+	    for(i = 2; i <= a[0]; i++)								//And for every other element in the set
+	    {
+		    printf(", %d", a[i]);								//Print it formatted with commas
+		}
+	}
+	printf("}\n");												//The closing brace for the set
+}
+
+
+void enter_set(int v, int a[])									//"enter_set" enters an element into the set, avoiding repeated entries
+{
+   	if(a[0] == MAX_SET_SIZE)									//If the length of the array is equal to the defined maximum set size
+	{
+	    printf("The maximum set size has been exceeded.\n");	//Print a statement saying so
+	}
+	else if(!element_of(v, a))  								//Calls "element_of" function to determine if an element is already in the set
+	{
+	    a[0]++;													//If the element is not already in the set, increment the number of elements
+     	a[a[0]] = v;											//And set the element at that index to v, the element ot be entered
+    }
+}
+
+
+int element_of(int v, int a[])									//"element_of" returns 1(TRUE) or 0(FALSE) depending on whether the element is in the set
+{
+  	int i;														//Declaration of integer 'i' for use in the for loop
+
+   	for(i = 1; i <= a[0]; i++)									//For loop to process the elements of set 'a' one by one
+    {
+	    if(a[i] == v)											//If the element at the current index is equal to the value being searched for 'v'
+	    {
+	        return TRUE;										//Return TRUE
+	    }
+   	}
+	return FALSE;												//Otherwise, return FALSE
+}
+
+
+void union_set(int a[], int b[], int c[])  						//"union_set" carries out the union operation on sets 'a' and 'b' and stores the result in set 'c'
+{
+   	int i;														//Declaration of integer 'i' for use in the for loop
+
+   	c[0] = 0;  													//"c[0]" is a special element - it indicates the number of elements in set 'c'
+
+	for(i = 1; i <= a[0]; i++)									//For loop to process the elements of set 'a' one by one
+   	{
+	    enter_set(a[i], c);										//And enter each one into set 'c'
+	}
+
+   	for(i = 1; i <= b[0]; i++)									//For loop to process the elements of set 'b' one by one
+   	{
+	    enter_set(b[i], c);										//And enter each one into set 'c'
+	}
+}
+
+
+void intersect_set(int a[], int b[], int c[])					//"intersect_set" carries out the intersect operation on sets 'a' and 'b' and stores the result in set 'c'
+{
+   	int i;														//Declaration of integer 'i' for use in the for loop
+
+   	c[0] = 0;  													//"c[0]" is a special element - it indicates the number of elements in set 'c'
+
+   	for(i = 1; i <= a[0]; i++)									//For loop to process the elements of set 'a' one by one
+	{
+	    if(element_of(a[i], b))									//If the element at the current index is an element in set 'b'
+	    {
+            enter_set(a[i], c);									//Enter that element in set 'c'
+	    }
+	}
+}
+
+
+void delete_set(int v, int a[])									//"delete_set" removes a user-defined element from set 'a'
+{
+	int i;														//Declaration of integer 'i' for use in the for loop
+	int j;														//Declaration of integer 'j' for use in the for loop
+
+	if(element_of(v, a))										//If the element to be deleted is an element of set 'a'
+	{
+        for(i = 1; i <= a[0]; i++)								//Then, for each element of set 'a'
+        {
+			if(a[i] == v)										//If the element of set 'a' at the current index of i is the element to be deleted
+			{
+	            for(j = i; j <= a[0]; j++)						//Then, for each element that this occurs
+		    	{
+					a[j] = a[j + 1];							//Shift the element located to the right of it to the current index, until the end
+		    	}
+		    	a[0]--;											//And decrement a[0] - the number of elements in the set
+			}
+	    }
+    }
+}
+
+
+void set_difference(int a[], int b[], int c[])					//"set_difference" carries out the set difference operation on sets 'a' and 'b' and stores the result in set 'c'
+{
+	int i;														//Declaration of integer 'i' for use in the for loop
+
+	c[0] = 0;													//"c[0]" is a special element - it indicates the number of elements in set 'c'
+
+	union_set(a, b, c);											//Calculates the union of sets 'a' and 'b' for use within the function
+
+	for(i = 1; i <= b[0]; i++)									//For loop to process the elements of set 'b' one by one
+	{
+	    delete_set(b[i], c);									//Deletes the elements of set 'b' from set 'c' - the union of sets 'a' and 'b'
+	}
+}
+
+
+void sym_difference(int a[], int b[], int c[])					//"sym_difference" carries out the symmetric difference operation on sets 'a' and 'b' and stores the result in set 'c'
+{
+	int i;														//Declaration of integer 'i' for use in the for loop
+
+	c[0] = 0;													//"c[0]" is a special element - it indicates the number of elements in set 'c'
+
+	union_set(a, b, c);											//Calculates the union of sets 'a' and 'b' for use within the function
+
+	for(i = 1; i <= a[0]; i++)									//For loop to process the elements of set 'a' one by one
+	{
+	    if(element_of(a[i], b))									//If the element of set 'a' at the current index of i is an element of set 'b'
+	    {
+	    	delete_set(a[i], c);								//Then delete the element from set c, the union of sets 'a' and 'b'
+	    }
+	}
+}

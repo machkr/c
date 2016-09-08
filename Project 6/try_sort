@@ -1,0 +1,32 @@
+# Author: Jing Wang, for Program Design
+# try_sort is a Unix shell script that will be used to test project 6.
+# To use the script, copy it into the same directory as your scource file
+# Set execute permission for the file by issuing the command:
+# chmod +x try_sort
+# Compile your program, producing a.out as the executable
+# To run the script, type 
+# ./try_sort
+# The user input from the script will not be shown on the screen.
+# Compare the results from your program with the expected results on the test cases.
+echo '===================================================='
+#
+./a.out <<-EndOfInput
+10 9 23 24 559 20 84 12 48 98
+EndOfInput
+echo '----------------------------------------------------'
+echo 'Expected:'
+echo 'Enter 10 numbers to be sorted: 10 9 23 24 559 20 84 12 48 98'
+echo 'In sorted order: 9 10 12 20 23 24 48 84 98 559'
+#
+echo '===================================================='
+#
+./a.out <<-EndOfInput
+8 12 42 10 89 4 1 39 102 3
+EndOfInput
+echo '----------------------------------------------------'
+echo 'Expected:'
+echo 'Enter 10 numbers to be sorted: 8 12 42 10 89 4 1 39 102 3'
+echo 'In sorted order: 1 3 4 8 10 12 39 42 89 102'
+#
+echo '===================================================='
+
